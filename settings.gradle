@@ -1,0 +1,5 @@
+rootProject.name = 'multithread'
+include 'hw1-multithread-dialog'
+include 'hw1-multithread-dialogCounter'
+include 'hw1-arrayCalculator'
+
