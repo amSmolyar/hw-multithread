@@ -2,4 +2,7 @@ rootProject.name = 'multithread'
 include 'hw1-multithread-dialog'
 include 'hw1-multithread-dialogCounter'
 include 'hw1-arrayCalculator'
+include 'hw2-carShowroom'
+include 'hw2-advancedCarShowroom'
+include 'hw3-box'
 
