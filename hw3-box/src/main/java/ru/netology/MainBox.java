@@ -3,7 +3,7 @@ package ru.netology;
 import java.util.concurrent.*;
 
 public class MainBox {
-    static final int PROCESS_LIVETIME = 20000;          // milliseconds (время работы)
+    static final int PROCESS_LIFETIME = 40000;          // milliseconds (время работы)
     static final long LAUNCHER_INITIAL_DELAY = 1000;    // milliseconds
     static final long OPEN_PERIOD = 5000;               // milliseconds
     static final int TIME_TO_OPEN = 200;                // milliseconds
@@ -15,7 +15,7 @@ public class MainBox {
 
     public static void main(String[] args) throws InterruptedException {
         // пул для потока, открывающего коробочку:
-        ScheduledExecutorService executorServiceLauncher = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executorServiceLauncher = Executors.newSingleThreadScheduledExecutor();
         // запуск потока, открывающего коробочку:
         Runnable launcher = new Launcher();
         ScheduledFuture<?> launcherFuture = executorServiceLauncher.scheduleAtFixedRate(launcher, LAUNCHER_INITIAL_DELAY, OPEN_PERIOD, TimeUnit.MILLISECONDS);
@@ -23,10 +23,10 @@ public class MainBox {
         Thread stopThread = new Thread(new Stopper());
         stopThread.start();
 
-        executorServiceLauncher.schedule(() -> launcherFuture.cancel(true), PROCESS_LIVETIME, TimeUnit.MILLISECONDS);
+        executorServiceLauncher.schedule(() -> launcherFuture.cancel(true), PROCESS_LIFETIME, TimeUnit.MILLISECONDS);
 
         // Основной поток ждет и закрывает вспомогательные:
-        Thread.sleep(PROCESS_LIVETIME);
+        Thread.sleep(PROCESS_LIFETIME);
         executorServiceLauncher.shutdown();
         stopThread.interrupt();
 
