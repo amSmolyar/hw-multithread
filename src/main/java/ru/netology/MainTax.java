@@ -25,7 +25,7 @@ public class MainTax {
         thread3.join();
 
         System.out.println("\n\nОбщая выручка: " + proceed.getCurrentSum());
-        
+
     }
 
     static class Proceed {
