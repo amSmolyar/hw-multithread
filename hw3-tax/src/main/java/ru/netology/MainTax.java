@@ -7,14 +7,14 @@ public class MainTax {
     public static void main(String[] args) throws InterruptedException {
         Proceed proceed = new Proceed();
 
-        // РјР°СЃСЃРёРІС‹ С†РµР»С‹С… РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹С… С‡РёСЃРµР»:
+        // массивы целых положительных чисел:
         int[] proceedsFrom1 = arrayGen(150, 10, 1000);
         int[] proceedsFrom2 = arrayGen(200, 10, 1000);
         int[] proceedsFrom3 = arrayGen(250, 10, 1000);
 
-        Thread thread1 = new Thread(null, () -> proceed.calc(proceedsFrom1), "Р’С‹СЂСѓС‡РєР° РїРѕ 1-РјСѓ РјР°РіР°Р·РёРЅСѓ");
-        Thread thread2 = new Thread(null, () -> proceed.calc(proceedsFrom2), "Р’С‹СЂСѓС‡РєР° РїРѕ 2-РјСѓ РјР°РіР°Р·РёРЅСѓ");
-        Thread thread3 = new Thread(null, () -> proceed.calc(proceedsFrom3), "Р’С‹СЂСѓС‡РєР° РїРѕ 3-РјСѓ РјР°РіР°Р·РёРЅСѓ");
+        Thread thread1 = new Thread(null, () -> proceed.calc(proceedsFrom1), "Выручка по 1-му магазину");
+        Thread thread2 = new Thread(null, () -> proceed.calc(proceedsFrom2), "Выручка по 2-му магазину");
+        Thread thread3 = new Thread(null, () -> proceed.calc(proceedsFrom3), "Выручка по 3-му магазину");
 
         thread1.start();
         thread2.start();
@@ -24,7 +24,7 @@ public class MainTax {
         thread2.join();
         thread3.join();
 
-        System.out.println("\n\nРћР±С‰Р°СЏ РІС‹СЂСѓС‡РєР°: " + proceed.getCurrentSum());
+        System.out.println("\n\nОбщая выручка: " + proceed.getCurrentSum());
 
     }
 
